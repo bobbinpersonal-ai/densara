@@ -14,11 +14,13 @@
 5. Audit the site's SEO and implement fixes
 
 ## Tooling status
-- **Shopify AI Toolkit** (official Shopify plugin, full read/write to the store): not installed as of 2026-07-24. Install with:
-  `/plugin marketplace add Shopify/shopify-ai-toolkit` then `/plugin install shopify-plugin@shopify-ai-toolkit`.
+- **Network access**: environment updated 2026-07-24 to Custom access including `shopify.dev`, `*.myshopify.com`, `admin.shopify.com`, `accounts.shopify.com` (plus default package-manager domains). Confirmed reachable.
+- **Shopify AI Toolkit**: installed 2026-07-24 (`shopify-plugin@shopify-ai-toolkit`, v1.5.3) via `claude plugin marketplace add Shopify/shopify-ai-toolkit` + `claude plugin install shopify-plugin@shopify-ai-toolkit`. It's 20 skills (shopify-admin, shopify-liquid, shopify-onboarding-merchant, shopify-use-shopify-cli, etc.) plus 2 harness-only hooks — not raw MCP tools. It uses the `shopify` CLI / Admin GraphQL API under the hood.
   ⚠️ This toolkit mutates the LIVE store directly — no built-in draft mode, no undo. All safety rules below exist specifically to compensate for that.
-- **shopify-dev-mcp** (official, read-only docs/schema helper — cannot mutate the store): not installed. Run via `npx -y @shopify/dev-mcp@latest` and register as an MCP server if/when needed for validating GraphQL/Liquid.
-- **This cloud environment's network policy blocks all outbound traffic to Shopify** (`shopify.dev`, `*.myshopify.com` both confirmed policy-denied). Live store operations cannot happen from this session until either (a) the environment's network policy is changed to allow those domains, or (b) the work is done from a local Claude Code session on a machine with open network access.
+  ⚠️ Skill scripts send usage telemetry (queries, code, model/client IDs) to shopify.dev **by default**. We've set `OPT_OUT_INSTRUMENTATION=true` in `.claude/settings.json` to disable this.
+  Declared in this repo's `.claude/settings.json` (`enabledPlugins` + `extraKnownMarketplaces`) so it persists across sessions. **Plugins installed mid-session don't load their skills until a new session starts** — confirmed by testing.
+- **shopify-dev-mcp** (read-only docs/schema helper, separate from the toolkit above): not installed — toolkit's `shopify-dev` skill likely covers this need already.
+- **Admin API credentials**: not yet configured. Needed: a custom app in Shopify admin with Admin API access token, stored as an environment variable (never committed). See setup checklist below.
 
 ## Always-do safety rules
 1. **Plan before mutating.** For every task that will create/update/delete a product, discount, theme file, or page, write out the plan (what will change, why, expected result) before making the call. Do not skip this even for "small" changes.
