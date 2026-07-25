@@ -20,7 +20,10 @@
   ⚠️ Skill scripts send usage telemetry (queries, code, model/client IDs) to shopify.dev **by default**. We've set `OPT_OUT_INSTRUMENTATION=true` in `.claude/settings.json` to disable this.
   Declared in this repo's `.claude/settings.json` (`enabledPlugins` + `extraKnownMarketplaces`) so it persists across sessions. **Plugins installed mid-session don't load their skills until a new session starts** — confirmed by testing.
 - **shopify-dev-mcp** (read-only docs/schema helper, separate from the toolkit above): not installed — toolkit's `shopify-dev` skill likely covers this need already.
-- **Admin API credentials**: not yet configured. Needed: a custom app in Shopify admin with Admin API access token, stored as an environment variable (never committed). See setup checklist below.
+- **Admin API credentials**: CONFIGURED 2026-07-24. Custom-app static tokens are deprecated for new apps as of Jan 2026; the current path is Shopify CLI's `shopify store auth --store <domain> --scopes <...>` (OAuth, no custom app/backend needed). Authenticated as bobbin.dahal@mail.com. Re-run `store auth` if the session token expires or more scopes are needed.
+- **⚠️ Correct store domain is `fa8ihd-6j.myshopify.com`, NOT `densara.myshopify.com`.** "Densara" is the store's display name only — `densara.myshopify.com` does not exist (confirmed 404). Always use `fa8ihd-6j.myshopify.com` for CLI/API calls.
+- **Store plan**: Basic.
+- **⚠️ Node/proxy quirk**: Shopify CLI 4.x uses Node's native `fetch`, which does not honor `HTTPS_PROXY` unless `NODE_USE_ENV_PROXY=1` is set (Node ≥ 22.21). Without it, every CLI call that reaches Shopify's servers fails with a misleading `403 Host not in allowlist` error that looks like a network-policy block but isn't. Set permanently in this repo's `.claude/settings.json` under `env`.
 
 ## Always-do safety rules
 1. **Plan before mutating.** For every task that will create/update/delete a product, discount, theme file, or page, write out the plan (what will change, why, expected result) before making the call. Do not skip this even for "small" changes.

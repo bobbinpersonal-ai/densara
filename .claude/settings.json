@@ -11,6 +11,7 @@
     "shopify-plugin@shopify-ai-toolkit": true
   },
   "env": {
-    "OPT_OUT_INSTRUMENTATION": "true"
+    "OPT_OUT_INSTRUMENTATION": "true",
+    "NODE_USE_ENV_PROXY": "1"
   }
 }
