@@ -41,3 +41,6 @@
 - Live theme: "Helio" (stock Shopify 2026 theme). Has solid built-in technical SEO (title tags, meta description, canonical, Open Graph, Twitter Card) via `snippets/meta-tags.liquid` — don't assume it needs fixing without checking first.
 - Image alt text: use the `fileUpdate` mutation with `MediaImage` GIDs (get these via `product.media`, NOT `product.images` which returns `ProductImage` GIDs that don't work with `fileUpdate`).
 - `cdn.shopify.com` needed adding to the environment's allowed domains separately from `*.myshopify.com` in order to download/view product images.
+- Second product added: "Sevich Hair Fiber Lock-In Spray" (gid://shopify/Product/9821429367001), status DRAFT, $19.99, no image yet (owner fulfills via DSers.com and will add a real photo later).
+- Draft theme "Helio - Copy content edits" (gid://shopify/OnlineStoreTheme/161842594009) holds rewritten, gender-inclusive homepage copy — NOT published. Live "Helio" theme is untouched. Check with owner before publishing.
+- Blog "News" (gid://shopify/Blog/105200615641) now has 4 unpublished draft articles on hair-loss education (men's and women's causes separately, plus an immediate-vs-long-term piece). All flagged as informational only, non-medical-advice, pointing to a dermatologist for diagnosis.
