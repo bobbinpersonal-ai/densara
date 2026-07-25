@@ -35,4 +35,9 @@
 7. Explain things in plain language — the owner is a beginner. Avoid unexplained jargon.
 
 ## Store schema notes (learned over time)
-_(empty — will be filled in as we learn specifics about Densara's catalog, plan tier, apps installed, etc.)_
+- Existing product: "Sevich Hair Building Fibers" (gid://shopify/Product/9820803989721), status ACTIVE. Single option named "format" combining shade+size, e.g. "Black 25g". Real shade lineup (10 total): Black, Dark Brown, Medium Brown, Light Brown, Auburn, Golden Blonde, Medium Blonde, Light Blonde, Grey, White. Sizes: 12g (White only), 25g (all other shades). There is also a standalone "Applicator" variant (accessory, not a shade/size). No 100g size exists despite what old copy claimed — verify against live variants before writing any size/shade claims.
+- Storefront was password-protected as of 2026-07-25 (pre-launch). Check before assuming any page is publicly visible/indexable.
+- No custom domain connected as of 2026-07-25 — still on `fa8ihd-6j.myshopify.com`.
+- Live theme: "Helio" (stock Shopify 2026 theme). Has solid built-in technical SEO (title tags, meta description, canonical, Open Graph, Twitter Card) via `snippets/meta-tags.liquid` — don't assume it needs fixing without checking first.
+- Image alt text: use the `fileUpdate` mutation with `MediaImage` GIDs (get these via `product.media`, NOT `product.images` which returns `ProductImage` GIDs that don't work with `fileUpdate`).
+- `cdn.shopify.com` needed adding to the environment's allowed domains separately from `*.myshopify.com` in order to download/view product images.
