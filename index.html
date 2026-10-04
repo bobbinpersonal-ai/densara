@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Deployment Test</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fg: #fafafa;
+    --muted: #8b8b8b;
+    --line: #262626;
+    --ok: #4ade80;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { width: 100%; max-width: 560px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ok);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 14px;
+    margin-bottom: 28px;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--ok);
+  }
+  h1 {
+    font-size: clamp(38px, 11vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 0 0 20px;
+  }
+  p { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 0 0 28px; }
+  dl {
+    margin: 0;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  dt { color: var(--muted); }
+  dd { margin: 0; text-align: right; }
+</style>
+</head>
+<body>
+<main>
+  <div class="badge"><span class="dot"></span> Deployment live</div>
+
+  <h1>DONALD STRUMP</h1>
+
+  <p>
+    If you can read that name, the pipeline works: code committed in the repo,
+    pushed to the production branch, built and served by Vercel.
+  </p>
+
+  <dl>
+    <div class="row"><dt>Project</dt><dd>densara</dd></div>
+    <div class="row"><dt>Branch</dt><dd>claude/densara-shopify-setup-fstn0l</dd></div>
+    <div class="row"><dt>Deployed</dt><dd>2026-10-04</dd></div>
+    <div class="row"><dt>Status</dt><dd>Placeholder — not the real site</dd></div>
+  </dl>
+</main>
+</body>
+</html>
